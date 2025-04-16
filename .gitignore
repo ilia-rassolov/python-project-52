@@ -1,0 +1,6 @@
+# Python-generated files
+build.sh
+dist/
+wheels/
+.env
+.venv
