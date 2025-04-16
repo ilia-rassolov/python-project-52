@@ -2,5 +2,5 @@ build:
 	./build.sh
 
 render-start:
-	gunicorn task_manager.wsgi.py
+	gunicorn task_manager.wsgi
 
