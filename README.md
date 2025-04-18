@@ -8,3 +8,5 @@
 Django-приложение
 
 ---
+
+https://python-project-52-zidj.onrender.com
