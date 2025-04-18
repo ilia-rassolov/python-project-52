@@ -37,7 +37,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ALLOWED_HOSTS = [
     'webserver',
     '127.0.0.1',
-    '.onrender.com'
+    'python-project-52-zidj.onrender.com'
 ]
 
 
