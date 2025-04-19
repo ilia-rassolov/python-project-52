@@ -7,3 +7,6 @@ render-start:
 install:
 	uv sync
 
+lint:
+	uv run flake8 task_manager
+
