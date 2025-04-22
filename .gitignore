@@ -3,3 +3,4 @@ dist/
 wheels/
 .env
 .venv
+/__pycache__
