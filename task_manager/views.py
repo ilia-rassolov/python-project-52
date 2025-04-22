@@ -4,13 +4,7 @@ from django.shortcuts import redirect
 
 
 def index(request):
-    return render(request, 'index.html', context={
-        'who': 'Привет от Хекслета!',
-    })
-
-def about(request):
-    return render(request, 'about.html')
-
+    return render(request, 'index.html')
 
 class HomePageView(TemplateView):
 

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+{% block content %}
+    <h1>Пользователи</h1>
+    {% for user in users %}
+        <div>
+            <a href="{% url 'comment_create' article.id %}">{{ article.name }}</a>
+            <div>{{ article.body|slice:":200" }}</div>
+            <a href="{% url 'articles_update' article.id %}">edit article</a>
+            <form action="{% url 'articles_delete' article.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Удалить">
+            </form>
+        </div>
+    {% endfor %}
+{% endblock %}
+</body>
+</html>
