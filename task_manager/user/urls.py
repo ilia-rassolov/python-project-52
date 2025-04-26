@@ -1,11 +1,11 @@
 from django.urls import path
+from django.contrib import admin
 from task_manager.user import views
-from task_manager.user.views import (IndexView)
 
 
 urlpatterns = [
-    path('', IndexView.as_view(), name='users_index'),
-    # path('<int:id>/', ArticleView.as_view(), name='show_article',),
+    path('', views.UserListView.as_view(), name='user-list'),
+    path('create/', views.signup, name='signup'),
     # path('<int:id>/edit/', ArticleFormEditView.as_view(), name='articles_update'),
     # path('<int:id>/delete/', ArticleFormDeleteView.as_view(), name='articles_delete'),
     # path('<int:id>/', CommentArticleView.as_view(), name='comment_create',),

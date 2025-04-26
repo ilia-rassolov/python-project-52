@@ -26,9 +26,9 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Include BOOTSTRAP5_FOLDER in path
-BOOTSTRAP5_FOLDER = os.path.abspath(os.path.join(BASE_DIR, "..", "django_bootstrap5"))
-if BOOTSTRAP5_FOLDER not in sys.path:
-    sys.path.insert(0, BOOTSTRAP5_FOLDER)
+# BOOTSTRAP5_FOLDER = os.path.abspath(os.path.join(BASE_DIR, "..", "django_bootstrap5"))
+# if BOOTSTRAP5_FOLDER not in sys.path:
+#     sys.path.insert(0, BOOTSTRAP5_FOLDER)
 
 
 # Quick-start development settings - unsuitable for production
@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_bootstrap5',
     'task_manager',
+    'task_manager.user',
 ]
 
 MIDDLEWARE = [
@@ -94,20 +95,20 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {                 # это была автоматическая конфигурация
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default=DATABASE_URL,
-        conn_max_age=600
-    )
+DATABASES = {                 # это была автоматическая конфигурация
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Replace this value with your local database's connection string.
+#         default=DATABASE_URL,
+#         conn_max_age=600
+#     )
+# }
 
 
 # Password validation
@@ -153,10 +154,10 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-BOOTSTRAP5 = {
-    "error_css_class": "django_bootstrap5-error",
-    "required_css_class": "django_bootstrap5-required",
-    "javascript_in_head": True,
-}
+# BOOTSTRAP5 = {
+#     "error_css_class": "django_bootstrap5-error",
+#     "required_css_class": "django_bootstrap5-required",
+#     "javascript_in_head": True,
+# }
 
-# STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = BASE_DIR / "staticfiles"

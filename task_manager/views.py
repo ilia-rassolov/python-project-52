@@ -1,24 +1,29 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.base import TemplateView
+from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.contrib.auth import login, authenticate
 
-
-def index(request):
-    return render(request, 'index.html', context={
-        'who': 'Привет от Хекслета!',
-    })
-
-def about(request):
-    return render(request, 'about.html')
+from .forms import LoginForm
 
 
 class HomePageView(TemplateView):
+    template_name = "home.html"
 
-    template_name = "index.html"
+def login_view(request):
+    form = LoginForm(data=request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password) # Проверяем учетные данные
+            if user is not None:
+                login(request, user)     # Выполняем вход
+                return redirect('home')  # Перенаправляем на главную страницу
+    return render(request, 'login.html', {'form': form})
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['who'] = 'World'
-        return context
+
+
+
 
 

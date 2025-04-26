@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Менеджер задач Hexlet</title>
+    {% csrf_token %}
     {% load django_bootstrap5 %}
     {% bootstrap_css %}
-    {% bootstrap_javascript %}
-
   </head>
   <body>
       <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand ms-3" href="/">Менеджер задач</a>
-        <a class="navbar-nav nav-link ms-2" href="/">Пользователи</a>
-        <a class="navbar-nav nav-link ms-3" href="/">Вход</a>
-        <a class="navbar-nav me-auto nav-link ms-3" href="/">Регистрация</a>
+        <a class="navbar-nav nav-link ms-2" href="{% url 'user-list' %}">Пользователи</a>
+        <a class="navbar-nav nav-link ms-3" href="/login">Вход</a>
+        <a class="navbar-nav nav-link nav-link ms-3" href="{% url 'signup' %}">Регистрация</a>
+        <a class="navbar-nav me-auto nav-link ms-3" href="/admin">Admin</a>
       </nav>
       <div id="content">
         {% block content %}{% endblock %}
