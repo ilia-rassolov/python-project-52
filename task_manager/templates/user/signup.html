@@ -15,7 +15,7 @@
 <div class="container wrapper flex-grow-1">
     <h1 class="my-4">Регистрация</h1>
     <form action="{% url 'signup' %}" method="post">
-        <input type="hidden" name="csrfmiddlewaretoken" value="ntvgQwdgxjsERBSASoGEb8PEB0IsuExhr9jWNK0yNV83rHur6rYb7Be4oXoi2bE7">
+        {% csrf_token %}
         <div class="mb-3">
             <label class="form-label" for="id_first_name">Имя</label>
             <input type="text" name="first_name" maxlength="150" class="form-control" placeholder="Имя" required="" id="id_first_name">

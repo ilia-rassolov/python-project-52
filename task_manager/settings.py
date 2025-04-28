@@ -160,4 +160,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     "javascript_in_head": True,
 # }
 
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 STATIC_ROOT = BASE_DIR / "staticfiles"

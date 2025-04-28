@@ -15,7 +15,7 @@
 <div class="container wrapper flex-grow-1">
     <h1 class="my-4">Вход</h1>
     <form method="post">
-        <input type="hidden" name="csrfmiddlewaretoken" value="pcLGTzZJIU9aLJyO1hGoxn70tAzhA9kutSzmQNM1YwPzlPaFfkYVtQwqgxf78Grk">
+        {% csrf_token %}
         <div class="mb-3">
             <label class="form-label" for="id_username">Имя пользователя</label>
             <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" class="form-control" placeholder="Имя пользователя" required="" id="id_username">

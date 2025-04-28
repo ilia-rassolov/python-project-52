@@ -1,12 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class User(models.Model):
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
-    username = models.CharField(max_length=20)
-    password = models.CharField(max_length=20)
+class CustomUser(User):
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
     USERNAME_FIELD = 'username'
 
     def __str__(self):
