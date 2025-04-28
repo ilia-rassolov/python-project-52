@@ -1,5 +1,4 @@
 from django.urls import path
-from django.contrib import admin
 from task_manager.user import views
 
 
