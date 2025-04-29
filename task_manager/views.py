@@ -3,6 +3,7 @@ from django.views.generic.base import TemplateView
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.contrib.auth import login, authenticate
+from django.contrib import messages
 
 from .forms import LoginForm
 
@@ -19,6 +20,7 @@ def login_view(request):
             user = authenticate(username=username, password=password) # Проверяем учетные данные
             if user is not None:
                 login(request, user)     # Выполняем вход
+                messages.success(request, 'Вы залогинены')
                 return redirect('home')  # Перенаправляем на главную страницу
     return render(request, 'login.html', {'form': form})
 
