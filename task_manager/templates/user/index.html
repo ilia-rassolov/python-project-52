@@ -19,8 +19,8 @@
           <tr>
             <td>{{ user.id }}</td>
             <td>{{ user.first_name }}</td>
-            <td>{{ user }}</td>
-            <td>{{ user.created_at }}</td>
+            <td>{{ user.first_name }} {{ user.last_name }}</td>
+            <td>{{ user.date_joined }}</td>
             <td>
               <a href="/users/{{ user.id }}/update/">Изменить</a>
               <br>

@@ -10,3 +10,6 @@ install:
 lint:
 	uv run flake8 task_manager
 
+migrate:
+	python manage.py makemigrations | python manage.py migrate
+

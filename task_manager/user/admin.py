@@ -1,10 +1,13 @@
 from django.contrib import admin
-from django.contrib.admin import DateFieldListFilter
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin as DefaultUserAdmin
 
-from .models import CustomUser
+# Отменяем регистрацию стандартной модели User
+admin.site.unregister(User)
 
-@admin.register(CustomUser)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'username', 'password') # Перечисляем поля, отображаемые в таблице списка пользователей
-    search_fields = ['first_name', 'last_name', 'created_at']
-    list_filter = (('created_at', DateFieldListFilter),) # Перечисляем поля для фильтрации
+# Создаём кастомный класс админки
+@admin.register(User)
+class CustomUserAdmin(DefaultUserAdmin):
+    list_display = ('username', 'first_name', 'last_name', 'date_joined', 'is_staff')  # Настраиваем отображаемые поля
+    search_fields = ('username', 'first_name', 'last_name', 'date_joined')  # Поля для поиска
+    list_filter = ('is_staff', 'is_superuser', 'is_active')  # Поля для фильтрации

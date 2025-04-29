@@ -164,4 +164,6 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+AUTH_USER_MODEL = 'auth.User'
+
 STATIC_ROOT = BASE_DIR / "staticfiles"

@@ -2,15 +2,16 @@
 
 
 {% block content %}
-<!--{% if messages %}-->
-<!--    {% for category, message in messages %}-->
-<!--    {% if category == 'error' %}-->
-<!--    <div class="alert alert-danger flashes" role="alert">-->
-<!--      {{ message }}-->
-<!--    </div>-->
-<!--    {% endif %}-->
-<!--    {% endfor %}-->
-<!--{% endif %}-->
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li class="{{ message.tags }}">
+      {{ message|safe }}
+      <a href="#" class="close">✖</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
 <div class="container border col-10 mt-3 p-5 rounded alt='10' bg-light">
     <h1 class="display-4 fw-light">Привет от Хекслета!</h1>
     <p class="fs-5 fw-light">Практические курсы по программированию</p>
