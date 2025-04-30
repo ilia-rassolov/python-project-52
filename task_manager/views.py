@@ -20,7 +20,7 @@ def login_view(request):
             user = authenticate(username=username, password=password) # Проверяем учетные данные
             if user is not None:
                 login(request, user)     # Выполняем вход
-                messages.success(request, 'Вы залогинены')
+                messages.add_message(request, messages.SUCCESS, "Вы залогинены")
                 return redirect('home')  # Перенаправляем на главную страницу
     return render(request, 'login.html', {'form': form})
 
