@@ -3,4 +3,6 @@ dist/
 wheels/
 .env
 .venv
-
+db.sqlite3
+.staticfiles/admin
+task_manager/__pycache__
