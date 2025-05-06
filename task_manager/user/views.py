@@ -33,14 +33,15 @@ class SignUp(CreateView):
         return render(request, 'user/signup.html', {'form': form, 'error_password': error_password})
 
 
-class UpdateUser(UpdateView):
+class UserUpdateView(UpdateView):
     model = User
-    template_name = 'users/update.html'
-    fields = ['first_name', 'last_name', 'username', 'password1', 'password2']
+    template_name = 'auth/user_update_form.html'
+    fields = ['first_name', 'last_name', 'username']
+    template_name_suffix = "_update_form"
     success_url = reverse_lazy('index')
 
     def post(self, request, *args, **kwargs):
-        user_id = kwargs.get('id')
+        user_id = kwargs.get('pk')
         user = User.objects.get(id=user_id)
         form = SignUpForm(request.POST, instance=user)
         if form.is_valid():
@@ -50,15 +51,21 @@ class UpdateUser(UpdateView):
             messages.success(request, 'Пользователь успешно изменен')
             return redirect('index')
         error_password = "Введенные пароли не совпадают."
-        return render(request, 'update.html',
+        return render(request, 'user_update_form.html',
                       {'error_password': error_password, 'form': form, 'user': user})
 
 
-# class DeleteUser(UpdateView):
-#     model = User
-#     template_name = 'users/update.html'
-#     fields = ['first_name', 'last_name', 'username', 'password1', 'password2']
-#     success_url = reverse_lazy('index')
+class DeleteUser(DeleteView):
+    model = User
+    template_name = 'auth/user_delete_form.html'
+    success_url = reverse_lazy('index')
+
+    def post(self, request, *args, **kwargs):
+        self.delete(request, *args, **kwargs)
+        messages.success(request, 'Пользователь успешно удален')
+        return redirect('index')
+
+
 
 
 

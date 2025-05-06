@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.base import TemplateView
-# from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.views import LoginView
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 
 class HomePageView(TemplateView):
@@ -34,8 +34,10 @@ class LoginUser(LoginView):
         return render(request, 'login.html', {'error_password': error_password})
 
 
+class Logout(LogoutView):
+    success_url = reverse_lazy('home')
 
-
-
-
-
+    def post(self, request, *args, **kwargs):
+        logout(request)
+        messages.info(request, 'Вы разлогинены')
+        return redirect('home')
