@@ -7,4 +7,4 @@ source $HOME/.local/bin/env
 # python manage.py runserver
 # команду установки зависимостей, сборки статики, применения миграций и другие
 make install
-# make collectstatic && make migrate
+make migrate
