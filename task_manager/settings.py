@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import sys
 import os
 from dotenv import load_dotenv
 import dj_database_url
@@ -26,7 +25,8 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Include BOOTSTRAP5_FOLDER in path
-# BOOTSTRAP5_FOLDER = os.path.abspath(os.path.join(BASE_DIR, "..", "django_bootstrap5"))
+# BOOTSTRAP5_FOLDER =
+# os.path.abspath(os.path.join(BASE_DIR, "..", "django_bootstrap5"))
 # if BOOTSTRAP5_FOLDER not in sys.path:
 #     sys.path.insert(0, BOOTSTRAP5_FOLDER)
 
@@ -116,16 +116,20 @@ DATABASES = {                 # это была автоматическая к�
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -163,6 +167,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
-
-AUTH_USER_MODEL = 'auth.User'
-
+#
+# AUTH_USER_MODEL = 'auth.User'
