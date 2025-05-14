@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head  id="head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Менеджер задач Hexlet</title>
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+  </head>
+  <body>
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand ms-3" href="{% url 'home' %}">Менеджер задач</a>
+        <a class="navbar-nav nav-link ms-2" href="{% url 'users:index' %}">Пользователи</a>
+        {% if user.is_authenticated %}
+        <a class="navbar-nav nav-link nav-link ms-3" href="{% url 'home' %}">Статусы</a>
+        <a class="navbar-nav nav-link nav-link ms-3" href="{% url 'home' %}">Метки</a>
+        <a class="navbar-nav nav-link nav-link ms-3" href="{% url 'home' %}">Задачи</a>
+        <a class="navbar-nav nav-link nav-link ms-3" href="{% url 'logout' %}">Выход</a>
+        {% else %}
+        <a class="navbar-nav nav-link ms-3" href="{% url 'login' %}">Вход</a>
+        <a class="navbar-nav nav-link nav-link ms-3" href="{% url 'users:signup' %}">Регистрация</a>
+        {% endif %}
+        <a class="navbar-nav me-auto nav-link ms-3" href="/admin">Admin</a>
+
+      </nav>
+
+      <div class="container col-10" id="content">
+        {% bootstrap_messages %}
+        {% block content %}{% endblock %}
+      </div>
+      <footer>
+          <div class="container my-5 pt-4 border-top fixed-bottom">
+              <a target="_blank" href="https://ru.hexlet.io">Hexlet</a>
+          </div>
+      </footer>
+  </body>
+</html>

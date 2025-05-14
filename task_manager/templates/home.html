@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container border mt-3 p-5 rounded alt='10' bg-light">
+    <h1 class="display-4 fw-light">Привет от Хекслета!</h1>
+    <p class="fs-5 fw-light">Практические курсы по программированию</p>
+    <hr>
+    <form class="d-flex" action="{% url 'home' %}" method="post">
+        <input type="submit" class="btn btn-primary  btn-lg ms-3 px-5
+         mx-3" value="Узнать больше">
+    </form>
+</div>
+{% endblock %}
