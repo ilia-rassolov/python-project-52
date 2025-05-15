@@ -164,6 +164,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     "javascript_in_head": True,
 # }
 
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {'min_length': 3, }
+    },
+]
+
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
