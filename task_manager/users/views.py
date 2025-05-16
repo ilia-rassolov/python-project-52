@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-# from django.contrib.auth.models import User
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 
 from task_manager.users.forms import SignUpForm
@@ -23,22 +23,39 @@ class SignUp(CreateView):
     def post(self, request, *args, **kwargs):
         form = SignUpForm(data=self.request.POST or None)
         if form.is_valid():
-            user = form.save(commit=False)  # создание объекта без сохранения в БД
+            user = form.save(commit=False)
             user.set_password(form.cleaned_data['password1'])
             user.save()
-            messages.success(request, 'Пользователь успешно зарегистрирован')
+            messages.success(
+                request,
+                'Пользователь успешно зарегистрирован'
+            )
             return redirect('login')
         error_password = "Введенные пароли не совпадают."
-        return render(request, 'users/signup.html',
-                      {'form': form, 'error_password': error_password})
+        return render(
+            request,
+            'users/signup.html',
+            {'form': form, 'error_password': error_password}
+        )
 
 
-class UserUpdateView(UpdateView):
+class UserUpdateView(UserPassesTestMixin, UpdateView):
     model = User
-    template_name = 'auth/user_update_form.html'
     fields = ['first_name', 'last_name', 'username']
     template_name_suffix = "_update_form"
-    success_url = reverse_lazy('users:index')
+    login_url = "users"
+
+    def test_func(self):
+        return self.request.user.id == self.kwargs.get('pk')
+
+    def handle_no_permission(self):
+        if self.raise_exception:
+            raise self.get_permission_denied_message()
+        messages.error(
+            self.request,
+            'У вас нет прав для изменения другого пользователя.'
+        )
+        return redirect('users:index')
 
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('pk')
@@ -51,17 +68,29 @@ class UserUpdateView(UpdateView):
             messages.success(request, 'Пользователь успешно изменен')
             return redirect('users:index')
         error_password = "Введенные пароли не совпадают."
-        return render(request, 'auth/user_update_form.html',
+        return render(request, 'users/user_update_form.html',
                       {
                           'error_password': error_password,
                           'form': form, 'user': user
                       })
 
 
-class DeleteUser(DeleteView):
+class DeleteUser(UserPassesTestMixin, DeleteView):
     model = User
-    template_name = 'auth/user_delete_form.html'
+    template_name_suffix = "_delete_form"
     success_url = reverse_lazy('users:index')
+
+    def test_func(self):
+        return self.request.user.id == self.kwargs.get('pk')
+
+    def handle_no_permission(self):
+        if self.raise_exception:
+            raise self.get_permission_denied_message()
+        messages.error(
+            self.request,
+            'У вас нет прав для изменения другого пользователя.'
+        )
+        return redirect('users:index')
 
     def post(self, request, *args, **kwargs):
         self.delete(request, *args, **kwargs)

@@ -21,13 +21,13 @@
         <a class="navbar-nav nav-link nav-link ms-3" href="{% url 'users:signup' %}">Регистрация</a>
         {% endif %}
         <a class="navbar-nav me-auto nav-link ms-3" href="/admin">Admin</a>
-
       </nav>
 
       <div class="container col-10" id="content">
         {% bootstrap_messages %}
         {% block content %}{% endblock %}
       </div>
+
       <footer>
           <div class="container my-5 pt-4 border-top fixed-bottom">
               <a target="_blank" href="https://ru.hexlet.io">Hexlet</a>

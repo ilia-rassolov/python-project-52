@@ -10,10 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import dj_database_url                                            # noqa
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-import dj_database_url
+
 
 
 load_dotenv()
@@ -24,18 +25,12 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Include BOOTSTRAP5_FOLDER in path
-# BOOTSTRAP5_FOLDER =
-# os.path.abspath(os.path.join(BASE_DIR, "..", "django_bootstrap5"))
-# if BOOTSTRAP5_FOLDER not in sys.path:
-#     sys.path.insert(0, BOOTSTRAP5_FOLDER)
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-6!$otkn9ia(*_!&zjjjg3@&$88$g#--oaog%$#4i4bf#h0vmd6'
+# SECRET_KEY =
+# 'django-insecure-6!$otkn9ia(*_!&zjjjg3@&$88$g#--oaog%$#4i4bf#h0vmd6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -91,7 +86,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'task_manager.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -109,30 +103,6 @@ DATABASES = {                 # это была автоматическая к�
 #         conn_max_age=600
 #     )
 # }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME':
-            'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME':
-            'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME':
-            'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME':
-            'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -158,6 +128,12 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Include BOOTSTRAP5_FOLDER in path
+# BOOTSTRAP5_FOLDER =
+# os.path.abspath(os.path.join(BASE_DIR, "..", "django_bootstrap5"))
+# if BOOTSTRAP5_FOLDER not in sys.path:
+#     sys.path.insert(0, BOOTSTRAP5_FOLDER)
+
 # BOOTSTRAP5 = {
 #     "error_css_class": "django_bootstrap5-error",
 #     "required_css_class": "django_bootstrap5-required",
@@ -166,8 +142,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        'OPTIONS': {'min_length': 3, }
+        'NAME':
+            'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS':
+            {'min_length': 3, }
     },
 ]
 

@@ -7,6 +7,7 @@ from task_manager.users.models import User
 # Отменяем регистрацию стандартной модели User
 # admin.site.unregister(User)
 
+
 # Создаём кастомный класс админки
 @admin.register(User)
 class CustomUserAdmin(DefaultUserAdmin):
