@@ -1,4 +1,4 @@
-from . import settings
+from task_manager import settings
 
 
 __all__ = (
