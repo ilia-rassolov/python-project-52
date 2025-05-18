@@ -17,7 +17,7 @@ class UserListView(ListView):
 
 class SignUp(CreateView):
     form_class = SignUpForm
-    template_name = 'users/signup.html'
+    template_name = 'users/create.html'
     success_url = reverse_lazy('signup')
 
     def post(self, request, *args, **kwargs):
@@ -34,7 +34,7 @@ class SignUp(CreateView):
         error_password = "Введенные пароли не совпадают."
         return render(
             request,
-            'users/signup.html',
+            'users/create.html',
             {'form': form, 'error_password': error_password}
         )
 
@@ -68,7 +68,7 @@ class UserUpdateView(UserPassesTestMixin, UpdateView):
             messages.success(request, 'Пользователь успешно изменен')
             return redirect('users:index')
         error_password = "Введенные пароли не совпадают."
-        return render(request, 'users/user_update_form.html',
+        return render(request, 'users/status_update_form.html',
                       {
                           'error_password': error_password,
                           'form': form, 'user': user
