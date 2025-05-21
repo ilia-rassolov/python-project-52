@@ -2,7 +2,7 @@ Metadata-Version: 2.4
 Name: hexlet-code
 Version: 0.1.0
 Summary: Add your description here
-Requires-Python: >=3.10
+Requires-Python: >=3.11
 Description-Content-Type: text/markdown
 Requires-Dist: dj-database-url>=2.3.0
 Requires-Dist: django-bootstrap5>=25.1

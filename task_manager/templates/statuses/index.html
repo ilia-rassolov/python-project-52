@@ -19,7 +19,7 @@
           <tr>
             <td>{{ status.id }}</td>
             <td>{{ status.name }}</td>
-            <td>{{ user.date_joined }}</td>
+            <td>{{ status.created_at }}</td>
             <td>
               <a href="{% url 'statuses:update' pk=status.id %}">Изменить</a>
               <br>
