@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
-from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import AuthenticationForm
+
+from django.utils.translation import gettext_lazy as _
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.urls import reverse_lazy
 
@@ -28,7 +30,7 @@ class LoginUser(LoginView):
             if user is not None:
                 login(self.request, user)
                 messages.add_message(self.request, messages.SUCCESS,
-                                     "Вы залогинены")
+                                     _("You are logged in"))
                 return redirect('home')
         error_password =\
             ("Пожалуйста, введите правильные имя пользователя и пароль."

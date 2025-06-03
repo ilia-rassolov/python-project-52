@@ -11,7 +11,7 @@ from task_manager.users.models import User
 
 class UserListView(ListView):
     model = User
-    template_name = 'users/index.html'
+    template_name = 'users/home.html'
     context_object_name = 'users'
 
 

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+{% if form.errors %}
+<div>
+    <ul>
+    {% for error in form.errors %}
+        <li><strong>{{ error|escape }}</strong></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    <h1 class="my-4">Изменение статуса</h1>
+    <form action="{% url 'statuses:update' pk=status.pk %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label" for="id_name">Имя</label>
+            <input type="text" name="name" value="{{ status.name }}" maxlength="100" class="form-control" placeholder="Имя" required="" id="id_name">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Изменить">
+    </form>
+</div>
+{% endblock %}

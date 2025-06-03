@@ -54,10 +54,12 @@ INSTALLED_APPS = [
     'task_manager',
     'task_manager.users',
     'task_manager.statuses',
-    # 'task_manager.tasks',
+    'task_manager.tasks',
+    'task_manager.labels',
 ]
 
 MIDDLEWARE = [
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -90,25 +92,29 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {                 # это была автоматическая конфигурация
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default=DATABASE_URL,
-        conn_max_age=600
-    )
+DATABASES = {                 # это была автоматическая конфигурация
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Replace this value with your local database's connection string.
+#         default=DATABASE_URL,
+#         conn_max_age=600
+#     )
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
+
+# LANGUAGES = [('en', 'English'), ('ru', 'Russian')]
+LOCALE_URL = "/locale/"
+LOCALE_PATHS = [BASE_DIR / 'locale']
 
 TIME_ZONE = 'UTC'
 
