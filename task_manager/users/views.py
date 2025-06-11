@@ -11,7 +11,7 @@ from task_manager.users.models import User
 
 class UserListView(ListView):
     model = User
-    template_name = 'users/home.html'
+    template_name = 'users/index.html'
     context_object_name = 'users'
 
 
@@ -68,7 +68,7 @@ class UserUpdateView(UserPassesTestMixin, UpdateView):
             messages.success(request, 'Пользователь успешно изменен')
             return redirect('users:index')
         error_password = "Введенные пароли не совпадают."
-        return render(request, 'users/status_update_form.html',
+        return render(request, 'users/users_update_form.html',
                       {
                           'error_password': error_password,
                           'form': form, 'user': user

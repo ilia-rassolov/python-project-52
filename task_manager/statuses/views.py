@@ -12,7 +12,7 @@ from task_manager.mixins import CustomLoginMixin
 
 class StatusListView(CustomLoginMixin, ListView):
     model = Status
-    template_name = 'statuses/home.html'
+    template_name = 'statuses/index.html'
     context_object_name = 'statuses'
 
 

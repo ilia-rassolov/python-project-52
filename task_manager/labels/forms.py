@@ -1,10 +1,10 @@
 from django import forms
-from task_manager.statuses.models import Status
+from task_manager.labels.models import Label
 
 
-class StatusForm(forms.ModelForm):
+class LabelForm(forms.ModelForm):
     class Meta:
-        model = Status
+        model = Label
         fields = (
             'name',
         )

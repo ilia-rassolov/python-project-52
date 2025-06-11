@@ -1,11 +1,11 @@
 from django.urls import path
-from task_manager.statuses import views
+from task_manager.labels import views
 
 
-app_name = "statuses"
+app_name = "labels"
 urlpatterns = [
-    path('', views.StatusListView.as_view(), name='index'),
-    path('create/', views.CreateStatus.as_view(), name='create'),
-    path('<int:pk>/update/', views.StatusUpdateView.as_view(), name='update'),
-    path('<int:pk>/delete/', views.DeleteStatus.as_view(), name='delete'),
+    path('', views.LabelListView.as_view(), name='index'),
+    path('create/', views.CreateLabel.as_view(), name='create'),
+    path('<int:pk>/update/', views.LabelUpdateView.as_view(), name='update'),
+    path('<int:pk>/delete/', views.DeleteLabel.as_view(), name='delete'),
 ]
