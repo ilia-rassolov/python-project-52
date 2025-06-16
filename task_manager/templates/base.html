@@ -9,30 +9,48 @@
     {% bootstrap_css %}
   </head>
   <body>
-      <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand ms-3" href="{% url 'home' %}">{% trans "Task manager" %}</a>
-        <a class="navbar-nav nav-link ms-2" href="{% url 'users:index' %}">Пользователи</a>
-        {% if user.is_authenticated %}
-        <a class="navbar-nav nav-link nav-link ms-3" href="{% url 'statuses:index' %}">Статусы</a>
-        <a class="navbar-nav nav-link nav-link ms-3" href="{% url 'labels:index' %}">Метки</a>
-        <a class="navbar-nav nav-link nav-link ms-3" href="{% url 'tasks:index' %}">Задачи</a>
-        <a class="navbar-nav nav-link nav-link ms-3" href="{% url 'logout' %}">Выход</a>
-        {% else %}
-        <a class="navbar-nav nav-link ms-3" href="{% url 'login' %}">Вход</a>
-        <a class="navbar-nav nav-link nav-link ms-3" href="{% url 'users:signup' %}">Регистрация</a>
-        {% endif %}
-        <a class="navbar-nav me-auto nav-link ms-3" href="/admin">Admin</a>
-      </nav>
-
-      <div class="container col-10" id="content">
-        {% bootstrap_messages %}
-        {% block content %}{% endblock %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light ms-3">
+      <a class="navbar-brand" href="{% url 'home' %}">Менеджер задач</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:index' %}">Пользователи</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'labels:index' %}">Статусы</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'tasks:index' %}">Метки</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'tasks:index' %}">Задачи</a>
+          </li>
+          <li class="nav-item">
+            <a class="me-auto nav-link" href="{% url 'logout' %}">Выход</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Вход</a>
+          </li>
+          <li class="nav-item">
+            <a class="me-auto nav-link" href="{% url 'users:signup' %}">Регистрация</a>
+          </li>
+          {% endif %}
+        </ul>
       </div>
+    </nav>
 
-      <footer>
-          <div class="container my-5 pt-4 border-top">
-              <a target="_blank" href="https://ru.hexlet.io">Hexlet</a>
-          </div>
-      </footer>
+  <div class="container col-10" id="content">
+    {% bootstrap_messages %}
+    {% block content %}{% endblock %}
+  </div>
+
+  <footer>
+    <div class="container my-5 pt-4 border-top">
+      <a target="_blank" href="https://ru.hexlet.io">Hexlet</a>
+    </div>
+  </footer>
+
   </body>
 </html>

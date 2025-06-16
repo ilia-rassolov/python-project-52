@@ -7,6 +7,15 @@ from task_manager.statuses.models import Status
 from task_manager.users.models import User
 from task_manager.labels.models import Label
 
+class ContextTaskMixin:
+    def get_context_data(self, **kwargs):
+        context = kwargs
+        context['statuses'] = Status.objects.all()
+        context['executors'] = User.objects.all()
+        context['labels'] = Label.objects.all()
+        context['tasks'] = Task.objects.all()
+        return context
+
 
 class CustomLoginMixin(LoginRequiredMixin):
     login_url = 'login'
@@ -21,11 +30,3 @@ class CustomLoginMixin(LoginRequiredMixin):
         return super().dispatch(request, *args, **kwargs)
 
 
-class ContextTaskMixin:
-    def get_context_data(self, **kwargs):
-        context = kwargs
-        context['statuses'] = Status.objects.distinct()
-        context['executors'] = User.objects.distinct()
-        context['labels'] = Label.objects.distinct()
-        context['tasks'] = Task.objects.all()
-        return context
