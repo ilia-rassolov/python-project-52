@@ -22,8 +22,7 @@ class CustomLoginMixin(LoginRequiredMixin):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            messages.error(
-                self.request,
+            messages.error(request,
                 'Вы не авторизованы! Пожалуйста, выполните вход.'
             )
             return redirect(self.login_url)

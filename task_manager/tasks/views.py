@@ -4,10 +4,10 @@ from django.urls import reverse_lazy
 
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
-
 from task_manager.tasks.forms import TaskForm
 from task_manager.mixins import CustomLoginMixin, ContextTaskMixin
 from task_manager.tasks.models import Task
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 
 class TaskListView(ContextTaskMixin, CustomLoginMixin, ListView):
@@ -23,8 +23,10 @@ class CreateTask(ContextTaskMixin, CustomLoginMixin, CreateView):
 
     def post(self, request, *args, **kwargs):
         form = TaskForm(data=request.POST or None)
-        if request.user.is_authenticated:
-            form.instance.author = request.user
+        # if request.user.is_authenticated:
+        form.instance.author = request.user
+        print(f"{request.POST=}")
+        print(f"{form=}")
         form.save()
         messages.success(
                 request,
@@ -40,13 +42,13 @@ class CreateTask(ContextTaskMixin, CustomLoginMixin, CreateView):
 
 class TaskUpdateView(CustomLoginMixin, UpdateView):
     model = Task
-    fields = ['name']
+    form_class = TaskForm
     template_name_suffix = "_update_form"
 
     def post(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')
-        status = Task.objects.get(id=task_id)
-        form = TaskForm(request.POST, instance=status)
+        task = Task.objects.get(id=task_id)
+        form = TaskForm(request.POST, instance=task)
         form.save()
         messages.success(
             request,
@@ -55,10 +57,22 @@ class TaskUpdateView(CustomLoginMixin, UpdateView):
         return redirect('tasks:index')
 
 
-class DeleteTask(CustomLoginMixin, DeleteView):
+class DeleteTask(UserPassesTestMixin, CustomLoginMixin, DeleteView):
     model = Task
     template_name_suffix = "_delete_form"
     success_url = reverse_lazy('tasks:index')
+
+    def test_func(self):
+        task_id = self.kwargs.get('pk')
+        task = Task.objects.get(id=task_id)
+        return self.request.user.id == task.author
+
+    def handle_no_permission(self):
+        messages.error(
+            self.request,
+            'Задачу может удалить только ее автор'
+        )
+        return redirect('tasks:index')
 
     def post(self, request, *args, **kwargs):
         super().delete(request, *args, **kwargs)
@@ -67,4 +81,4 @@ class DeleteTask(CustomLoginMixin, DeleteView):
 
 class TaskDetailView(DetailView):
     model = Task
-    template_name = None
+    template_name_suffix = '_detail'

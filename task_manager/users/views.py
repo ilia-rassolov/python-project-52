@@ -49,8 +49,6 @@ class UserUpdateView(UserPassesTestMixin, UpdateView):
         return self.request.user.id == self.kwargs.get('pk')
 
     def handle_no_permission(self):
-        if self.raise_exception:
-            raise self.get_permission_denied_message()
         messages.error(
             self.request,
             'У вас нет прав для изменения другого пользователя.'
@@ -84,8 +82,6 @@ class DeleteUser(UserPassesTestMixin, DeleteView):
         return self.request.user.id == self.kwargs.get('pk')
 
     def handle_no_permission(self):
-        if self.raise_exception:
-            raise self.get_permission_denied_message()
         messages.error(
             self.request,
             'У вас нет прав для изменения другого пользователя.'

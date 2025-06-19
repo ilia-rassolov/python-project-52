@@ -22,8 +22,7 @@
     </div>
     <div class="mb-3">
         <label class="form-label" for="id_description">Описание</label>
-        <textarea name="description" cols="40" rows="10" class="form-control" placeholder="Описание" id="id_description">
-        </textarea>
+        <textarea name="description" class="form-control" placeholder="Описание" id="id_description"></textarea>
     </div>
     <div class="mb-3">
         <label class="form-label" for="id_status">Статус</label>
@@ -45,7 +44,7 @@
     </div>
     <div class="mb-3">
         <label class="form-label" for="id_labels">Метка</label>
-        <select name="executor" class="form-select ml-2 mr-3" id="id_labels" multiple>
+        <select name="label" class="form-select ml-2 mr-3" id="id_labels" multiple>
             {% for label in labels %}
             <option value="{{ label.id }}">{{ label.name }}</option>
             {% endfor %}

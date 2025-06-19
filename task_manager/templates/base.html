@@ -18,10 +18,10 @@
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
-              <a class="nav-link" href="{% url 'labels:index' %}">Статусы</a>
+              <a class="nav-link" href="{% url 'statuses:index' %}">Статусы</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'tasks:index' %}">Метки</a>
+            <a class="nav-link" href="{% url 'labels:index' %}">Метки</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'tasks:index' %}">Задачи</a>
