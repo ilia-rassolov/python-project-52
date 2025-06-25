@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    <h1 class="my-4">{{ header }}</h1>
+    <p>{{ confirmation }} {{ object_to_delete }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input class="btn btn-danger" type="submit" value="{% trans "Yes, delete" %}">
+    </form>
+</div>
+{% endblock %}

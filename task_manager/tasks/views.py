@@ -1,84 +1,80 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-
-from task_manager.tasks.forms import TaskForm
-from task_manager.mixins import CustomLoginMixin, ContextTaskMixin
-from task_manager.tasks.models import Task
+from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import UserPassesTestMixin
 
+from task_manager.tasks.models import Task
+from task_manager.tasks.forms import TaskForm
+from task_manager.mixins import (CustomLoginMixin,
+                                 CustomCreateView,
+                                 CustomUpdateView,
+                                 CustomDeleteView
+                                 )
 
-class TaskListView(ContextTaskMixin, CustomLoginMixin, ListView):
+
+class TaskListView(CustomLoginMixin, ListView):
     model = Task
     template_name =  'tasks/index.html'
+    context_object_name = 'tasks'
 
 
-class CreateTask(ContextTaskMixin, CustomLoginMixin, CreateView):
+class TaskCreateView(CustomCreateView):           # dooble task and others
     model = Task
     form_class = TaskForm
-    template_name = 'tasks/create.html'
     success_url = reverse_lazy('tasks:index')
+    success_message = _("Task successfully created")
+    extra_context = {
+        "button_name": _("Create"),
+        "header": _("Create a task")
+    }
 
-    def post(self, request, *args, **kwargs):
-        form = TaskForm(data=request.POST or None)
-        # if request.user.is_authenticated:
-        form.instance.author = request.user
-        print(f"{request.POST=}")
-        print(f"{form=}")
-        form.save()
-        messages.success(
-                request,
-                'Задача успешно создана'
-            )
-        return redirect('tasks:index')
-        # messages.error(
-        #     request,
-        #     'Задача не создана, данные не валидны !!!'
-        # )
-        # return render(request, 'tasks/index.html', {'form': form})
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
-
-class TaskUpdateView(CustomLoginMixin, UpdateView):
+class TaskUpdateView(CustomUpdateView):
     model = Task
     form_class = TaskForm
-    template_name_suffix = "_update_form"
-
-    def post(self, request, *args, **kwargs):
-        task_id = kwargs.get('pk')
-        task = Task.objects.get(id=task_id)
-        form = TaskForm(request.POST, instance=task)
-        form.save()
-        messages.success(
-            request,
-            'Задача успешно изменена'
-        )
-        return redirect('tasks:index')
-
-
-class DeleteTask(UserPassesTestMixin, CustomLoginMixin, DeleteView):
-    model = Task
-    template_name_suffix = "_delete_form"
     success_url = reverse_lazy('tasks:index')
+    success_message = _("Task successfully updated")
+    extra_context = {
+        "button_name": _("Update"),
+        "header": _("Update task")
+    }
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class TaskDeleteView(UserPassesTestMixin, CustomDeleteView):
+    model = Task
+    success_url = reverse_lazy('tasks:index')
+    success_message = _('Task successfully deleted')
+    permission_denied_url = reverse_lazy('tasks:index')
+    permission_denied_message = _("A task can only be deleted by its author.")
+    extra_context = {
+        "title": _("Task deletion"),
+        "confirmation": _("Are you sure you want to delete the task")
+    }
 
     def test_func(self):
-        task_id = self.kwargs.get('pk')
-        task = Task.objects.get(id=task_id)
-        return self.request.user.id == task.author
+        return self.request.user == self.get_object().author
 
     def handle_no_permission(self):
         messages.error(
             self.request,
-            'Задачу может удалить только ее автор'
+            self.permission_denied_message
         )
-        return redirect('tasks:index')
+        return redirect(self.permission_denied_url)
 
-    def post(self, request, *args, **kwargs):
-        super().delete(request, *args, **kwargs)
-        messages.success(request, 'Задача успешно удалена')
-        return redirect('tasks:index')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['object_to_delete'] = self.get_object()
+        return context
 
-class TaskDetailView(DetailView):
-    model = Task
-    template_name_suffix = '_detail'
+class TaskDetailView(CustomLoginMixin, DetailView):
+    pass
+

@@ -82,6 +82,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -112,7 +113,7 @@ DATABASES = {                 # это была автоматическая к�
 
 LANGUAGE_CODE = 'ru-RU'
 
-# LANGUAGES = [('en', 'English'), ('ru', 'Russian')]
+LANGUAGES = [('en', 'English'), ('ru', 'Russian')]
 LOCALE_URL = "/locale/"
 LOCALE_PATHS = [BASE_DIR / 'locale']
 

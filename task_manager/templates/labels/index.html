@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
-
+{% load i18n %}
 {% block content %}
 <div class="container wrapper flex-grow-1">
-    <h1 class="my-4">Метки</h1>
-    <a class="btn btn-primary mb-3" href="{% url 'labels:create' %}">Создать метку</a>
+    <h1 class="my-4">{% trans "Labels" %}</h1>
+    <a class="btn btn-primary mb-3" href="{% url 'labels:create' %}">{% trans "Create a tag" %}</a>
     <table class="table table-striped">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Имя</th>
-            <th>Дата создания</th>
+            <th>{% trans "Name" %}</th>
+            <th>{% trans "Date of creation" %}</th>
             <th></th>
         </tr>
         </thead>
@@ -18,12 +18,12 @@
         {% for label in labels %}
           <tr>
             <td>{{ label.id }}</td>
-            <td>{{ label.name }}</td>
+            <td>{{ label }}</td>
             <td>{{ label.created_at }}</td>
             <td>
-              <a href="{% url 'labels:update' pk=label.id %}">Изменить</a>
+              <a href="{% url 'labels:update' pk=label.id %}">{% trans "Change" %}</a>
               <br>
-              <a href="{% url 'labels:delete' pk=label.id %}">Удалить</a>
+              <a href="{% url 'labels:delete' pk=label.id %}">{% trans "Delete" %}</a>
           </tr>
         {% endfor %}
         </tbody>

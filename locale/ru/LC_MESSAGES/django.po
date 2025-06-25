@@ -1,359 +1,377 @@
-# This file is distributed under the same license as the Django package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-# Translators:
-# crazyzubr <hjcnbckfd@gmail.com>, 2020
-# Ivan Khomutov <iskhomutov@gmail.com>, 2017
-# Jannis Leidel <jannis@leidel.info>, 2011
-# Алексей Борискин <sun.void@gmail.com>, 2012-2015,2022-2024
-# Андрей Щуров <shurov9009@gmail.com>, 2016
-# Влад Мещеряков <victimofamisery@gmail.com>, 2021
-# Bobsans <mr.bobsans@gmail.com>, 2016
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: django\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-22 11:46-0300\n"
-"PO-Revision-Date: 2024-08-07 08:09+0000\n"
-"Last-Translator: Алексей Борискин <sun.void@gmail.com>, 2012-2015,2022-2024\n"
-"Language-Team: Russian (http://app.transifex.com/django/django/language/"
-"ru/)\n"
+"POT-Creation-Date: 2025-06-24 13:58+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-msgid "Personal info"
-msgstr "Персональная информация"
+#: task_manager/labels/views.py:27
+msgid "The label was successfully created."
+msgstr "Метка успешно создана."
 
-msgid "Permissions"
-msgstr "Права доступа"
+#: task_manager/labels/views.py:43
+msgid "The label has been changed successfully."
+msgstr "Метка успешно изменена."
 
-msgid "Important dates"
-msgstr "Важные даты"
+#: task_manager/labels/views.py:55
+msgid "The tag has been successfully removed."
+msgstr "Тег успешно удален."
 
-#, python-format
-msgid "%(name)s object with primary key %(key)r does not exist."
-msgstr "%(name)s с первичным ключом %(key)r не существует."
+#: task_manager/statuses/views.py:29
+msgid "Status successfully created"
+msgstr "Статус успешно создан"
 
-msgid "Conflicting form data submitted. Please try again."
-msgstr ""
-"Отправлены взаимоисключающие данные. Измените данные и попробуйте снова."
+#: task_manager/statuses/views.py:46
+msgid "Status changed successfully"
+msgstr "Статус успешно изменен"
 
-msgid "Password changed successfully."
-msgstr "Пароль успешно изменен."
+#: task_manager/statuses/views.py:58
+msgid "Status successfully deleted"
+msgstr "Статус успешно удален"
 
-msgid "Password-based authentication was disabled."
-msgstr "Аутентификация по паролю была запрещена."
+#: task_manager/tasks/views.py:33
+msgid "Task successfully created"
+msgstr "Задача успешно создана"
 
-#, python-format
-msgid "Change password: %s"
-msgstr "Изменить пароль: %s"
+#: task_manager/tasks/views.py:38
+msgid "Task not created"
+msgstr "Задача не создана"
 
-#, python-format
-msgid "Set password: %s"
-msgstr "Задать пароль: %s"
+#: task_manager/tasks/views.py:55
+msgid "Task successfully modified"
+msgstr "Задача успешно изменена"
 
-msgid "Authentication and Authorization"
-msgstr "Пользователи и группы"
+#: task_manager/tasks/views.py:60
+msgid "The task has not been changed"
+msgstr "Задача не была изменена."
 
-msgid "password"
-msgstr "пароль"
+#: task_manager/tasks/views.py:78
+msgid "A task can only be deleted by its author."
+msgstr "Удалить задачу может только ее автор."
 
-msgid "last login"
-msgstr "последний вход"
+#: task_manager/tasks/views.py:84
+msgid "Task successfully deleted"
+msgstr "Задача успешно удалена"
 
-msgid "No password set."
-msgstr "Пароль не задан."
+#: task_manager/templates/base.html:7
+msgid "Task manager Hexlet"
+msgstr "Менеджер задач Хекслет"
 
-msgid "Invalid password format or unknown hashing algorithm."
-msgstr "Неизвестный формат пароля или алгоритм хеширования."
+#: task_manager/templates/base.html:13
+msgid "Task manager"
+msgstr "Менеджер задач"
 
-msgid "Reset password"
-msgstr "Сбросить пароль"
+#: task_manager/templates/base.html:17
+#: task_manager/templates/users/index.html:6
+msgid "Users"
+msgstr "Пользователи"
 
-msgid "Set password"
-msgstr "Задать пароль"
+#: task_manager/templates/base.html:21
+#: task_manager/templates/statuses/index.html:6
+msgid "Statuses"
+msgstr "Статусы"
 
-msgid "The two password fields didn’t match."
-msgstr "Введенные пароли не совпадают."
+#: task_manager/templates/base.html:24
+#: task_manager/templates/labels/index.html:6
+msgid "Labels"
+msgstr "Метки"
 
-msgid ""
-"Whether the user will be able to authenticate using a password or not. If "
-"disabled, they may still be able to authenticate using other backends, such "
-"as Single Sign-On or LDAP."
-msgstr ""
-"Может ли пользователь аутентифироваться по паролю. Если эта возможность "
-"выключена, пользователь всё ещё может аутентифицироваться иными способами, "
-"например, Single Sing-On или LDAP, если они сконфигурированы и разрешены."
+#: task_manager/templates/base.html:27
+#: task_manager/templates/tasks/index.html:6
+msgid "Tasks"
+msgstr "Задачи"
 
+#: task_manager/templates/base.html:30
+msgid "Exit"
+msgstr "Выход"
+
+#: task_manager/templates/base.html:34 task_manager/templates/login.html:6
+msgid "Log in"
+msgstr "Вход"
+
+#: task_manager/templates/base.html:37
+#: task_manager/templates/users/create.html:6
+msgid "Registration"
+msgstr "Регистрация"
+
+#: task_manager/templates/home.html:6
+msgid "Greetings from Hexlet!"
+msgstr "Привет от Хекслета!"
+
+#: task_manager/templates/home.html:7
+msgid "Practical programming courses"
+msgstr "Практические курсы программирования"
+
+#: task_manager/templates/home.html:11
+msgid "Find out more"
+msgstr "Узнать больше"
+
+#: task_manager/templates/labels/create.html:6
+#: task_manager/templates/labels/index.html:7
+msgid "Create a tag"
+msgstr "Создать метку"
+
+#: task_manager/templates/labels/create.html:10
+#: task_manager/templates/labels/create.html:12
+#: task_manager/templates/labels/index.html:12
+#: task_manager/templates/labels/label_update_form.html:10
+#: task_manager/templates/labels/label_update_form.html:12
+#: task_manager/templates/statuses/create.html:10
+#: task_manager/templates/statuses/create.html:11
+#: task_manager/templates/statuses/index.html:12
+#: task_manager/templates/statuses/status_update_form.html:11
+#: task_manager/templates/statuses/status_update_form.html:13
+#: task_manager/templates/tasks/create.html:14
+#: task_manager/templates/tasks/create.html:15
+#: task_manager/templates/tasks/index.html:52
+#: task_manager/templates/tasks/task_update_form.html:11
+#: task_manager/templates/tasks/task_update_form.html:13
+#: task_manager/templates/users/create.html:10
+#: task_manager/templates/users/create.html:12
+#: task_manager/templates/users/user_update_form.html:10
+#: task_manager/templates/users/user_update_form.html:12
+msgid "Name"
+msgstr "Имя"
+
+#: task_manager/templates/labels/create.html:14
+#: task_manager/templates/statuses/create.html:13
+#: task_manager/templates/tasks/create.html:49
+msgid "Create"
+msgstr "Создать"
+
+#: task_manager/templates/labels/index.html:13
+#: task_manager/templates/statuses/index.html:13
+#: task_manager/templates/tasks/index.html:56
+#: task_manager/templates/users/index.html:13
+msgid "Date of creation"
+msgstr "Дата создания"
+
+#: task_manager/templates/labels/index.html:24
+#: task_manager/templates/labels/label_update_form.html:14
+#: task_manager/templates/statuses/index.html:24
+#: task_manager/templates/statuses/status_update_form.html:15
+#: task_manager/templates/tasks/index.html:70
+#: task_manager/templates/tasks/task_update_form.html:47
+#: task_manager/templates/users/index.html:25
+#: task_manager/templates/users/user_update_form.html:46
+msgid "Change"
+msgstr "Изменить"
+
+#: task_manager/templates/labels/index.html:26
+#: task_manager/templates/statuses/index.html:26
+#: task_manager/templates/tasks/index.html:72
+#: task_manager/templates/users/index.html:27
+msgid "Delete"
+msgstr "Удалить"
+
+#: task_manager/templates/labels/label_delete_form.html:6
+msgid "Removing a tag"
+msgstr "Удаление метки"
+
+#: task_manager/templates/labels/label_delete_form.html:7
+#: task_manager/templates/statuses/status_delete_form.html:7
+#: task_manager/templates/tasks/task_delete_form.html:7
+#: task_manager/templates/users/user_delete_form.html:7
+msgid "Are you sure you want to delete"
+msgstr "Вы уверены, что хотите удалить"
+
+#: task_manager/templates/labels/label_delete_form.html:10
+#: task_manager/templates/statuses/status_delete_form.html:10
+#: task_manager/templates/tasks/task_delete_form.html:10
+#: task_manager/templates/users/user_delete_form.html:10
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+#: task_manager/templates/labels/label_update_form.html:6
+msgid "Change label"
+msgstr "Изменить метку"
+
+#: task_manager/templates/login.html:11 task_manager/templates/login.html:13
+#: task_manager/templates/users/create.html:20
+#: task_manager/templates/users/create.html:22
+#: task_manager/templates/users/index.html:11
+#: task_manager/templates/users/user_update_form.html:20
+#: task_manager/templates/users/user_update_form.html:22
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: task_manager/templates/login.html:16 task_manager/templates/login.html:18
+#: task_manager/templates/users/create.html:27
+#: task_manager/templates/users/create.html:29
+#: task_manager/templates/users/user_update_form.html:29
+#: task_manager/templates/users/user_update_form.html:31
 msgid "Password"
 msgstr "Пароль"
 
-msgid "Password confirmation"
-msgstr "Подтверждение пароля"
+#: task_manager/templates/login.html:20
+msgid "Login"
+msgstr "Авторизоваться"
 
-msgid "Enter the same password as before, for verification."
-msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
+#: task_manager/templates/statuses/create.html:6
+#: task_manager/templates/statuses/index.html:7
+msgid "Create status"
+msgstr "Создать статус"
 
-msgid "Password-based authentication"
-msgstr "Аутентификация по паролю"
+#: task_manager/templates/statuses/status_delete_form.html:6
+msgid "Delete status"
+msgstr "Удалить статус"
 
-msgid "Enabled"
-msgstr "Разрешена"
+#: task_manager/templates/statuses/status_update_form.html:7
+msgid "Change of status"
+msgstr "Изменить статус"
 
-msgid "Disabled"
-msgstr "Запрещена"
+#: task_manager/templates/tasks/create.html:7
+#: task_manager/templates/tasks/index.html:7
+msgid "Create a task"
+msgstr "Создать задачу"
 
+#: task_manager/templates/tasks/create.html:19
+#: task_manager/templates/tasks/create.html:20
+#: task_manager/templates/tasks/task_update_form.html:16
+#: task_manager/templates/tasks/task_update_form.html:18
+msgid "Description"
+msgstr "Описание"
+
+#: task_manager/templates/tasks/create.html:24
+#: task_manager/templates/tasks/index.html:13
+#: task_manager/templates/tasks/index.html:53
+#: task_manager/templates/tasks/task_update_form.html:22
+msgid "Status"
+msgstr "Статус"
+
+#: task_manager/templates/tasks/create.html:33
+#: task_manager/templates/tasks/index.html:22
+#: task_manager/templates/tasks/index.html:55
+#: task_manager/templates/tasks/task_update_form.html:31
+msgid "Executor"
+msgstr "Исполнитель"
+
+#: task_manager/templates/tasks/create.html:42
+#: task_manager/templates/tasks/index.html:31
+#: task_manager/templates/tasks/task_update_form.html:40
+msgid "Label"
+msgstr "Метка"
+
+#: task_manager/templates/tasks/index.html:42
+msgid "Only your tasks"
+msgstr "Только свои задачи"
+
+#: task_manager/templates/tasks/index.html:44
+msgid "Show"
+msgstr "Показать"
+
+#: task_manager/templates/tasks/index.html:54
+msgid "Author"
+msgstr "Автор"
+
+#: task_manager/templates/tasks/task_delete_form.html:6
+msgid "Deleting a task"
+msgstr "Удаление задачи"
+
+#: task_manager/templates/tasks/task_update_form.html:6
+msgid "Change of task"
+msgstr "Изменение задачи"
+
+#: task_manager/templates/users/create.html:15
+#: task_manager/templates/users/create.html:17
+#: task_manager/templates/users/user_update_form.html:15
+#: task_manager/templates/users/user_update_form.html:17
+msgid "Surname"
+msgstr "Фамилия"
+
+#: task_manager/templates/users/create.html:24
+#: task_manager/templates/users/user_update_form.html:25
 msgid ""
-"Raw passwords are not stored, so there is no way to see the user’s password."
+"Required field. No more than 150 characters. Only letters, numbers and "
+"symbols @/./+/-/_."
 msgstr ""
-"Мы не храним сырые пароли, поэтому не существует способа посмотреть пароль "
-"пользователя."
-
-msgid ""
-"Enable password-based authentication for this user by setting a password."
-msgstr ""
-"Разрешить аутентификацию по паролю для этого пользователя, задав его пароль."
-
-#, python-format
-msgid ""
-"Please enter a correct %(username)s and password. Note that both fields may "
-"be case-sensitive."
-msgstr ""
-"Пожалуйста, введите правильные %(username)s и пароль. Оба поля могут быть "
-"чувствительны к регистру."
-
-msgid "This account is inactive."
-msgstr "Эта учетная запись отключена."
-
-msgid "Email"
-msgstr "Адрес электронной почты"
-
-msgid "New password"
-msgstr "Новый пароль"
-
-msgid "New password confirmation"
-msgstr "Подтверждение нового пароля"
-
-msgid "Your old password was entered incorrectly. Please enter it again."
-msgstr "Ваш старый пароль введен неправильно. Пожалуйста, введите его снова."
-
-msgid "Old password"
-msgstr "Старый пароль"
-
-msgid "algorithm"
-msgstr "алгоритм"
-
-msgid "iterations"
-msgstr "итерации"
-
-msgid "salt"
-msgstr "соль"
-
-msgid "hash"
-msgstr "хэш"
-
-msgid "variety"
-msgstr "множество"
-
-msgid "version"
-msgstr "версия"
-
-msgid "memory cost"
-msgstr "затраты памяти"
-
-msgid "time cost"
-msgstr "затраты времени"
-
-msgid "parallelism"
-msgstr "параллелизм"
-
-msgid "work factor"
-msgstr "рабочий фактор"
-
-msgid "checksum"
-msgstr "контрольная сумма"
-
-msgid "block size"
-msgstr "размер блока"
-
-msgid "name"
-msgstr "имя"
-
-msgid "content type"
-msgstr "тип содержимого"
-
-msgid "codename"
-msgstr "кодовое название"
-
-msgid "permission"
-msgstr "право"
-
-msgid "permissions"
-msgstr "права"
-
-msgid "group"
-msgstr "группа"
-
-msgid "groups"
-msgstr "группы"
-
-msgid "superuser status"
-msgstr "статус суперпользователя"
-
-msgid ""
-"Designates that this user has all permissions without explicitly assigning "
-"them."
-msgstr "Указывает, что пользователь имеет все права без явного их назначения."
-
-msgid ""
-"The groups this user belongs to. A user will get all permissions granted to "
-"each of their groups."
-msgstr ""
-"Группы, к которым принадлежит данный пользователь. Пользователь получит все "
-"права, указанные в каждой из его/её групп."
-
-msgid "user permissions"
-msgstr "права пользователя"
-
-msgid "Specific permissions for this user."
-msgstr "Индивидуальные права данного пользователя."
-
-msgid "username"
-msgstr "имя пользователя"
-
-msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
-msgstr ""
-"Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./"
-"+/-/_."
-
-msgid "A user with that username already exists."
-msgstr "Пользователь с таким именем уже существует."
-
-msgid "first name"
-msgstr "имя"
-
-msgid "last name"
-msgstr "фамилия"
-
-msgid "email address"
-msgstr "адрес электронной почты"
-
-msgid "staff status"
-msgstr "статус персонала"
-
-msgid "Designates whether the user can log into this admin site."
-msgstr ""
-"Отметьте, если пользователь может входить в административную часть сайта."
-
-msgid "active"
-msgstr "активный"
-
-msgid ""
-"Designates whether this user should be treated as active. Unselect this "
-"instead of deleting accounts."
-msgstr ""
-"Отметьте, если пользователь должен считаться активным. Уберите эту отметку "
-"вместо удаления учётной записи."
-
-msgid "date joined"
-msgstr "дата регистрации"
-
-msgid "user"
-msgstr "пользователь"
-
-msgid "users"
-msgstr "пользователи"
-
-#, python-format
-msgid ""
-"This password is too short. It must contain at least %(min_length)d "
-"character."
-msgid_plural ""
-"This password is too short. It must contain at least %(min_length)d "
-"characters."
-msgstr[0] ""
-"Введённый пароль слишком короткий. Он должен содержать как минимум "
-"%(min_length)d символ."
-msgstr[1] ""
-"Введённый пароль слишком короткий. Он должен содержать как минимум "
-"%(min_length)d символа."
-msgstr[2] ""
-"Введённый пароль слишком короткий. Он должен содержать как минимум "
-"%(min_length)d символов."
-msgstr[3] ""
-"Введённый пароль слишком короткий. Он должен содержать как минимум "
-"%(min_length)d символов."
-
-#, python-format
-msgid "Your password must contain at least %(min_length)d character."
-msgid_plural "Your password must contain at least %(min_length)d characters."
-msgstr[0] "Ваш пароль должен содержать как минимум %(min_length)d символ."
-msgstr[1] "Ваш пароль должен содержать как минимум %(min_length)d символа."
-msgstr[2] "Ваш пароль должен содержать как минимум %(min_length)d символов."
-msgstr[3] "Ваш пароль должен содержать как минимум %(min_length)d символов."
-
-#, python-format
-msgid "The password is too similar to the %(verbose_name)s."
-msgstr "Введённый пароль слишком похож на %(verbose_name)s."
-
-msgid "Your password can’t be too similar to your other personal information."
-msgstr "Пароль не должен быть слишком похож на другую вашу личную информацию."
-
-msgid "This password is too common."
-msgstr "Введённый пароль слишком широко распространён."
-
-msgid "Your password can’t be a commonly used password."
-msgstr "Пароль не должен быть слишком простым и распространенным."
-
-msgid "This password is entirely numeric."
-msgstr "Введённый пароль состоит только из цифр."
-
-msgid "Your password can’t be entirely numeric."
-msgstr "Пароль не может состоять только из цифр."
-
-#, python-format
-msgid "Password reset on %(site_name)s"
-msgstr "Сброс пароля на %(site_name)s"
-
-msgid ""
-"Enter a valid username. This value may contain only unaccented lowercase a-z "
-"and uppercase A-Z letters, numbers, and @/./+/-/_ characters."
-msgstr ""
-"Введите правильное имя пользователя. Это значение может содержать только "
-"строчные буквы латиницы a-z без умляутов, прописные буквы A-Z, цифры и "
+"Обязательное поле. Не более 150 символов. Только буквы, цифры и "
 "символы @/./+/-/_."
 
+#: task_manager/templates/users/create.html:33
+#: task_manager/templates/users/user_update_form.html:34
+msgid "Your password must be at least 3 characters long."
+msgstr "Ваш пароль должен содержать не менее 3 символов."
+
+#: task_manager/templates/users/create.html:38
+#: task_manager/templates/users/create.html:40
+#: task_manager/templates/users/user_update_form.html:39
+#: task_manager/templates/users/user_update_form.html:41
+msgid "Confirm password"
+msgstr "Подтвердите пароль"
+
+#: task_manager/templates/users/create.html:42
+#: task_manager/templates/users/user_update_form.html:44
+msgid "To confirm, please enter your password again."
+msgstr "Для подтверждения введите пароль еще раз."
+
+#: task_manager/templates/users/create.html:44
+msgid "Register"
+msgstr "Зарегистрироваться"
+
+#: task_manager/templates/users/index.html:12
+msgid "Full name"
+msgstr "Полное имя"
+
+#: task_manager/templates/users/user_delete_form.html:6
+msgid "Deleting a user"
+msgstr "Удаление пользователя"
+
+#: task_manager/templates/users/user_update_form.html:6
+msgid "Change user"
+msgstr "Изменить пользователя"
+
+#: task_manager/users/views.py:32
+msgid "User registered successfully"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: task_manager/users/views.py:35
+msgid "The passwords entered do not match.!"
+msgstr "Введенные пароли не совпадают!."
+
+#: task_manager/users/views.py:55 task_manager/users/views.py:88
+msgid "You do not have permission to modify another user."
+msgstr "У вас нет прав на изменение другого пользователя."
+
+#: task_manager/users/views.py:67
+msgid "User successfully changed"
+msgstr "Пользователь успешно изменен"
+
+#: task_manager/users/views.py:69
+msgid "The passwords entered do not match."
+msgstr "Введенные пароли не совпадают."
+
+#: task_manager/users/views.py:94
+msgid "User successfully deleted"
+msgstr "Пользователь успешно удален"
+
+#: task_manager/views.py:32
+msgid "You are logged in"
+msgstr "Вы залогинены"
+
+#: task_manager/views.py:35
 msgid ""
-"Enter a valid username. This value may contain only letters, numbers, and "
-"@/./+/-/_ characters."
+"Please enter the correct username and password. Both fields may be case "
+"sensitive."
 msgstr ""
-"Введите правильное имя пользователя. Оно может содержать только буквы, цифры "
-"и знаки @/./+/-/_."
+"Пожалуйста, введите правильное имя пользователя и пароль. Оба поля могут быть "
+"чувствительны к регистру."
 
-msgid "Logged out"
-msgstr "Не авторизован"
-
-msgid "Password reset"
-msgstr "Восстановление пароля"
-
-msgid "Password reset sent"
-msgstr "Письмо с инструкциями по восстановлению пароля отправлено"
-
-msgid "Enter new password"
-msgstr "Введите новый пароль"
-
-msgid "Password reset unsuccessful"
-msgstr "Ошибка восстановления пароля"
-
-msgid "Password reset complete"
-msgstr "Восстановление пароля завершено"
-
-msgid "Password change"
-msgstr "Изменение пароля"
-
-msgid "Password change successful"
-msgstr "Пароль успешно изменен"
+#: task_manager/views.py:43
+msgid "You are logged out"
+msgstr "Вы разлогинены"

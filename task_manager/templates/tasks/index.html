@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 
-
+{% load i18n %}
 {% block content %}
 <div class="container wrapper flex-grow-1">
-    <h1 class="my-4">Задачи</h1>
-    <a class="btn btn-primary mb-3" href="/tasks/create/" role="button">Создать задачу</a>
+    <h1 class="my-4">{% trans "Tasks" %}</h1>
+    <a class="btn btn-primary mb-3" href="/tasks/create/" role="button">{% trans "Create a task" %}</a>
     <div class="card mb-3">
         <div class="card-body bg-light">
     <form class="form-inline center" method="get">
       {% csrf_token %}
       <div class="mb-3">
-        <label class="form-label" for="id_status">Статус</label>
+        <label class="form-label" for="id_status">{% trans "Status" %}</label>
         <select name="status" class="form-select ml-2 mr-3" id="id_status">
           <option value="" selected="">---------</option>
           {% for status in statuses %}
-          <option value="{{ status.id }}">{{ status.name }}</option>
+          <option value="{{ status.id }}">{{ status }}</option>
           {% endfor %}
         </select>
       </div>
       <div class="mb-3">
-        <label class="form-label" for="id_executor">Исполнитель</label>
+        <label class="form-label" for="id_executor">{% trans "Executor" %}</label>
         <select name="executor" class="form-select ml-2 mr-3" id="id_executor">
           <option value="" selected="">---------</option>
           {% for executor in executors %}
@@ -28,20 +28,20 @@
         </select>
       </div>
       <div class="mb-3">
-        <label class="form-label" for="id_labels">Метка</label>
+        <label class="form-label" for="id_labels">{% trans "Label" %}</label>
         <select name="executor" class="form-select ml-2 mr-3" id="id_labels">
           <option value="" selected="">---------</option>
           {% for label in labels %}
-          <option value="{{ label.id }}">{{ label.name }}</option>
+          <option value="{{ label.id }}">{{ label }}</option>
           {% endfor %}
         </select>
       </div>
       <div class="mb-3">
         <div class="form-check">
           <input type="checkbox" name="self_tasks" class="form-check-input mr-3" id="id_self_tasks">
-          <label class="form-check-label" for="id_self_tasks">Только свои задачи</label>
+          <label class="form-check-label" for="id_self_tasks">{% trans "Only your tasks" %}</label>
         </div></div>
-        <input class="btn btn-primary" type="submit" value="Показать">
+        <input class="btn btn-primary" type="submit" value={% trans "Show" %}>
     </form>
   </div>
 </div>
@@ -49,11 +49,11 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>Имя</th>
-      <th>Статус</th>
-      <th>Автор</th>
-      <th>Исполнитель</th>
-      <th>Дата создания</th>
+      <th>{% trans "Name" %}</th>
+      <th>{% trans "Status" %}</th>
+      <th>{% trans "Author" %}</th>
+      <th>{% trans "Executor" %}</th>
+      <th>{% trans "Date of creation" %}</th>
       <th></th>
     </tr>
   </thead>
@@ -61,15 +61,15 @@
   {% for task in tasks %}
     <tr>
       <td>{{ task.id }}</td>
-      <td><a href="{% url 'tasks:detail' pk=task.id %}">{{ task.name }}</a></td>
+      <td><a href="{% url 'tasks:detail' pk=task.id %}">{{ task }}</a></td>
       <td>{{ task.status }}</td>
       <td>{{ task.author }}</td>
       <td>{{ task.executor }}</td>
       <td>{{ task.created_at }}</td>
       <td>
-        <a href="{% url 'tasks:update' pk=task.id %}">Изменить</a>
+        <a href="{% url 'tasks:update' pk=task.id %}">{% trans "Change" %}</a>
         <br>
-        <a href="{% url 'tasks:delete' pk=task.id %}">Удалить</a>
+        <a href="{% url 'tasks:delete' pk=task.id %}">{% trans "Delete" %}</a>
       </td>
     </tr>
   {% endfor %}

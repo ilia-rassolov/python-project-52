@@ -1,31 +1,50 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
+from django.db.models import ProtectedError
 
-from task_manager.tasks.models import Task
-from task_manager.statuses.models import Status
-from task_manager.users.models import User
-from task_manager.labels.models import Label
-
-class ContextTaskMixin:
-    def get_context_data(self, **kwargs):
-        context = kwargs
-        context['statuses'] = Status.objects.all()
-        context['executors'] = User.objects.all()
-        context['labels'] = Label.objects.all()
-        context['tasks'] = Task.objects.all()
-        return context
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView, UpdateView, DeleteView
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 class CustomLoginMixin(LoginRequiredMixin):
-    login_url = 'login'
+    login_url = reverse_lazy('login')
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request,
-                'Вы не авторизованы! Пожалуйста, выполните вход.'
+                _("You are not logged in! Please sign in.")
             )
             return redirect(self.login_url)
         return super().dispatch(request, *args, **kwargs)
+
+
+class CustomCreateView(CustomLoginMixin, SuccessMessageMixin, CreateView):  #replace
+    template_name = 'create_update_form.html'
+
+
+class CustomUpdateView(CustomLoginMixin, SuccessMessageMixin, UpdateView):
+    template_name = 'create_update_form.html'
+
+
+class CustomDeleteView(CustomLoginMixin, SuccessMessageMixin, DeleteView):
+    template_name = 'delete_form.html'
+    protected_message = None
+    protected_url = None
+
+    def post(self, request, *args, **kwargs):
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(request, self.protected_message)
+            return redirect(self.protected_url)
+
+
+
+
+
+
 
 

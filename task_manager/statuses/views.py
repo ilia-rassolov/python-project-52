@@ -1,13 +1,17 @@
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-
+from django.views.generic import ListView
 
 from task_manager.statuses.forms import StatusForm
 from task_manager.statuses.models import Status
-from task_manager.mixins import CustomLoginMixin
+from task_manager.mixins import (CustomLoginMixin,
+                                 CustomCreateView,
+                                 CustomUpdateView,
+                                 CustomDeleteView,
+                                 )
 
 
 class StatusListView(CustomLoginMixin, ListView):
@@ -15,44 +19,39 @@ class StatusListView(CustomLoginMixin, ListView):
     template_name = 'statuses/index.html'
     context_object_name = 'statuses'
 
-
-class CreateStatus(CustomLoginMixin, CreateView):
+class StatusCreateView(CustomCreateView):
+    model = Status
     form_class = StatusForm
-    template_name = 'statuses/create.html'
-
-    def post(self, request, *args, **kwargs):
-        form = StatusForm(data=self.request.POST or None)
-        form.save()
-        messages.success(
-                request,
-                'Статус успешно создан'
-            )
-        return redirect('statuses:index')
-
-
-class StatusUpdateView(CustomLoginMixin, UpdateView):
-    model = Status
-    fields = ['name']
-    template_name_suffix = "_update_form"
-
-    def post(self, request, *args, **kwargs):
-        status_id = kwargs.get('pk')
-        status = Status.objects.get(id=status_id)
-        form = StatusForm(request.POST, instance=status)
-        form.save()
-        messages.success(
-            request,
-            'Статус успешно изменен'
-        )
-        return redirect('statuses:index')
-
-
-class DeleteStatus(CustomLoginMixin, DeleteView):
-    model = Status
-    template_name_suffix = "_delete_form"
     success_url = reverse_lazy('statuses:index')
+    success_message = _("Status successfully created")
+    extra_context = {
+        "button_name": _("Create"),
+        "header": _("Create a status")
+    }
 
-    def post(self, request, *args, **kwargs):
-        super().delete(request, *args, **kwargs)
-        messages.success(request, 'Статус успешно удален')
-        return redirect('statuses:index')
+class StatusUpdateView(CustomUpdateView):
+    model = Status
+    form_class = StatusForm
+    success_url = reverse_lazy('statuses:index')
+    success_message = _("The status successfully updated")
+    extra_context = {
+        "button_name": _("Update"),
+        "header": _("Update status")
+    }
+
+
+class StatusDeleteView(CustomDeleteView):
+    model = Status
+    success_url = reverse_lazy('statuses:index')
+    success_message = _('Status successfully deleted')
+    protected_message = _("Cannot delete a status because it is in use")
+    protected_url = reverse_lazy('statuses:index')
+    extra_context = {
+        "title": _("Status deletion"),
+        "confirmation": _("Are you sure you want to delete the status")
+    }
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['object_to_delete'] = self.get_object()
+        return context

@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
-
+{% load i18n %}
 {% block content %}
 <div class="container border mt-3 p-5 rounded alt='10' bg-light">
-    <h1 class="display-4 fw-light">Привет от Хекслета!</h1>
-    <p class="fs-5 fw-light">Практические курсы по программированию</p>
+    <h1 class="display-4 fw-light">{% trans "Greetings from Hexlet!" %}</h1>
+    <p class="fs-5 fw-light">{% trans "Practical programming courses" %}</p>
     <hr>
     <form class="d-flex" action="{% url 'home' %}" method="post">
         <input type="submit" class="btn btn-primary  btn-lg ms-3 px-5
-         mx-3" value="Узнать больше">
+         mx-3" value={% trans "Find out more" %}>
     </form>
 </div>
 {% endblock %}

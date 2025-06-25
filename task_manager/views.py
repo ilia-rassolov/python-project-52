@@ -15,7 +15,7 @@ class HomePageView(TemplateView):
 
 class LoginUser(LoginView):
     form_class = AuthenticationForm
-    template_name = "login.html"
+    template_name = "login_form.html"
 
     def get_success_url(self):
         return reverse_lazy('home')
@@ -29,19 +29,17 @@ class LoginUser(LoginView):
                                 password=password)
             if user is not None:
                 login(self.request, user)
-                messages.add_message(self.request, messages.SUCCESS,
-                                     _("You are logged in"))
+                messages.success(request, _("You are logged in"))
                 return redirect('home')
-        error_password =\
-            ("Пожалуйста, введите правильные имя пользователя и пароль."
-             " Оба поля могут быть чувствительны к регистру.")
-        return render(request, 'login.html',
+        error_password = _(
+            "Please enter the correct username and password."
+            " Both fields may be case sensitive.")
+        return render(request, 'login_form.html',
                       {'error_password': error_password})
 
 
 class Logout(LogoutView):
     def dispatch(self, request, *args, **kwargs):
-        messages.add_message(self.request, messages.INFO,
-                             "Вы разлогинены")
+        messages.success(request, _("You are logged out"))
         logout(request)
         return redirect('home')
