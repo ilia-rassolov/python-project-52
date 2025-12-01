@@ -3,39 +3,32 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import AuthenticationForm
 
 from django.utils.translation import gettext_lazy as _
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate, logout
+from django.shortcuts import redirect
+from django.contrib.auth import logout
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.db.models import ProtectedError
+
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic import CreateView, UpdateView, DeleteView
+
+from task_manager.mixins import CustomLoginMixin, CustomSingleObjectMixin
+
 
 
 class HomePageView(TemplateView):
     template_name = "home.html"
 
 
-class LoginUser(LoginView):
+class LoginUser(SuccessMessageMixin, LoginView):
+    template_name = 'create_update_form.html'
     form_class = AuthenticationForm
-    template_name = "login_form.html"
-
-    def get_success_url(self):
-        return reverse_lazy('home')
-
-    def post(self, request, *args, **kwargs):
-        form = AuthenticationForm(data=self.request.POST or None)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(username=username,
-                                password=password)
-            if user is not None:
-                login(self.request, user)
-                messages.success(request, _("You are logged in"))
-                return redirect('home')
-        error_password = _(
-            "Please enter the correct username and password."
-            " Both fields may be case sensitive.")
-        return render(request, 'login_form.html',
-                      {'error_password': error_password})
+    success_url = reverse_lazy('home')
+    success_message = _('You are logged in')
+    extra_context = {
+        'header': _('Log In'),
+        'button_name': _('Login'),
+    }
 
 
 class Logout(LogoutView):
@@ -43,3 +36,26 @@ class Logout(LogoutView):
         messages.success(request, _("You are logged out"))
         logout(request)
         return redirect('home')
+
+class CustomCreateView(CustomLoginMixin, SuccessMessageMixin, CreateView):  #replace
+    template_name = 'create_update_form.html'
+
+
+class CustomUpdateView(CustomLoginMixin, SuccessMessageMixin, UpdateView):
+    template_name = 'create_update_form.html'
+
+
+class CustomDeleteView(CustomLoginMixin,
+                       CustomSingleObjectMixin,
+                       SuccessMessageMixin,
+                       DeleteView):
+    template_name = 'delete_form.html'
+    protected_message = None
+    protected_url = None
+
+    def post(self, request, *args, **kwargs):
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(request, self.protected_message)
+            return redirect(self.protected_url)

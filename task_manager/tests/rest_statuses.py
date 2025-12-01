@@ -19,7 +19,7 @@ class StatusTest(TestCase):
         self.assertContains(response, 'status_01')
         self.assertEqual(len(response.context['statuses']), 2)
 
-    def test_status_status(self):
+    def test_create_status(self):
         self.client.force_login(User.objects.get(pk=1))
         self.status = Status.objects.create(
             name="status_03"

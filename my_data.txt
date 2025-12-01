@@ -1,0 +1,8 @@
+UserUpdateView Пользователь с таким именем уже существует.
+i18n
+tests/users
+tests/tasks
+tests/statuses
+tests/labels
+
+

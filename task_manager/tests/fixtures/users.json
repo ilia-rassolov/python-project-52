@@ -3,20 +3,20 @@
     "model": "users.user",
     "pk": 1,
     "fields": {
-      "password": "pass_01",
-      "first_name": "user_01",
-      "last_name": "u_01",
-      "username": "username_01"
+      "password": "123",
+      "first_name": "very",
+      "last_name": "fast",
+      "username": "saler"
     }
   },
   {
     "model": "users.user",
     "pk": 2,
     "fields": {
-      "password": "pass_02",
-      "first_name": "user_02",
-      "last_name": "u_02",
-      "username": "username_02"
+      "password": "456",
+      "first_name": "michail",
+      "last_name": "ivanovich",
+      "username": "boss"
     }
   }
 ]

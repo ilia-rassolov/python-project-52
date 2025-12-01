@@ -1,14 +1,11 @@
-.venv
-.env
 .idea/
 **/__pycache__
-dist/
-../../other/db.sqlite3
 **/migrations
 
 __pycache__/
 *.py[cod]
 *$py.class
+my_data.txt
 
 
 # Distribution / packaging

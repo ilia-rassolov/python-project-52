@@ -1,18 +1,16 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib import messages
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 from django.views.generic import ListView, DetailView
-from django.contrib.auth.mixins import UserPassesTestMixin
 
 from task_manager.tasks.models import Task
 from task_manager.tasks.forms import TaskForm
+
+from task_manager.views import (CustomCreateView,
+                               CustomUpdateView,
+                               CustomDeleteView)
 from task_manager.mixins import (CustomLoginMixin,
-                                 CustomCreateView,
-                                 CustomUpdateView,
-                                 CustomDeleteView
-                                 )
+                                 CustomUserPassesTestMixin)
 
 
 class TaskListView(CustomLoginMixin, ListView):
@@ -21,7 +19,7 @@ class TaskListView(CustomLoginMixin, ListView):
     context_object_name = 'tasks'
 
 
-class TaskCreateView(CustomCreateView):           # dooble task and others
+class TaskCreateView(CustomCreateView):
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy('tasks:index')
@@ -45,16 +43,17 @@ class TaskUpdateView(CustomUpdateView):
         "header": _("Update task")
     }
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+class TaskDetailView(CustomLoginMixin, DetailView):
+    template_name = 'tasks/task_detail.html'
+    model = Task
 
-class TaskDeleteView(UserPassesTestMixin, CustomDeleteView):
+class TaskDeleteView(CustomUserPassesTestMixin, CustomDeleteView):
     model = Task
     success_url = reverse_lazy('tasks:index')
     success_message = _('Task successfully deleted')
     permission_denied_url = reverse_lazy('tasks:index')
     permission_denied_message = _("A task can only be deleted by its author.")
+    context_object_name = 'task'
     extra_context = {
         "title": _("Task deletion"),
         "confirmation": _("Are you sure you want to delete the task")
@@ -62,19 +61,3 @@ class TaskDeleteView(UserPassesTestMixin, CustomDeleteView):
 
     def test_func(self):
         return self.request.user == self.get_object().author
-
-    def handle_no_permission(self):
-        messages.error(
-            self.request,
-            self.permission_denied_message
-        )
-        return redirect(self.permission_denied_url)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['object_to_delete'] = self.get_object()
-        return context
-
-class TaskDetailView(CustomLoginMixin, DetailView):
-    pass
-

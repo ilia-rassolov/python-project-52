@@ -1,5 +1,3 @@
-from django.shortcuts import redirect
-from django.contrib import messages
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
@@ -7,11 +5,10 @@ from django.views.generic import ListView
 
 from task_manager.statuses.forms import StatusForm
 from task_manager.statuses.models import Status
-from task_manager.mixins import (CustomLoginMixin,
-                                 CustomCreateView,
-                                 CustomUpdateView,
-                                 CustomDeleteView,
-                                 )
+from task_manager.views import (CustomCreateView,
+                               CustomUpdateView,
+                               CustomDeleteView)
+from task_manager.mixins import CustomLoginMixin
 
 
 class StatusListView(CustomLoginMixin, ListView):
@@ -34,11 +31,11 @@ class StatusUpdateView(CustomUpdateView):
     form_class = StatusForm
     success_url = reverse_lazy('statuses:index')
     success_message = _("The status successfully updated")
+    context_object_name = 'status'
     extra_context = {
         "button_name": _("Update"),
         "header": _("Update status")
     }
-
 
 class StatusDeleteView(CustomDeleteView):
     model = Status
@@ -50,8 +47,3 @@ class StatusDeleteView(CustomDeleteView):
         "title": _("Status deletion"),
         "confirmation": _("Are you sure you want to delete the status")
     }
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['object_to_delete'] = self.get_object()
-        return context

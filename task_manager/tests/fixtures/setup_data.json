@@ -1,0 +1,49 @@
+{
+    "users": {
+        "new_user": {
+            "first_name": "maxim",
+            "last_name": "sergeev",
+            "username": "manager",
+            "password1": "789",
+            "password2": "789"
+        },
+        "wrong_update_user": {
+            "first_name": "not_first_name",
+            "last_name": "not_last_name",
+            "username": "not_coworker",
+            "password1": "123",
+            "password2": "wrong_password"
+        },
+        "success_update_user": {
+            "first_name": "olga",
+            "last_name": "kotina",
+            "username": "hr",
+            "password1": "success",
+            "password2": "success"
+        }
+    },
+    "statuses": {
+        "new_status": {
+            "name": "important"
+        },
+        "update_status": {
+            "name": "on hold"
+        }
+    },
+    "labels": {
+        "new_label": {
+            "name": "New label"
+        },
+        "update_label": {
+            "name": "forget"
+        }
+    },
+    "tasks": {
+        "new_task": {
+            "name": "Finish project"
+        },
+        "update_task": {
+            "name": "New Task 1"
+        }
+    }
+}
